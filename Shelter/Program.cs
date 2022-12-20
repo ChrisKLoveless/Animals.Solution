@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using ToDoList.Models;
+using Shelter.Models;
 
-namespace ToDoList
+namespace Shelter
 {
   class Program
   {
@@ -13,8 +13,13 @@ namespace ToDoList
 
       builder.Services.AddControllersWithViews();
 
-      builder.Services.AddDbContext<ToDoListContext>(dbContextOptions => dbContextOptions.UseMySql(builder.Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:DefaultConnection"])));
-
+      builder.Services.AddDbContext<ShelterContext>(
+        dbContextOptions => dbContextOptions
+          .UseMySql(
+            builder.Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:DefaultConnection"]
+          )
+        )
+      );      
       WebApplication app = builder.Build();
 
       // app.UseDeveloperExceptionPage();
